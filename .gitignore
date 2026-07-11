@@ -1,0 +1,11 @@
+.env
+.venv/
+.ipynb_checkpoints/
+browser_data/
+.cdp_url
+comment_log.json
+comment_log.csv
+__pycache__/
+*.pyc
+playwright/
+_to_delete_playwright/
