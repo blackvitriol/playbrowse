@@ -7,54 +7,11 @@ import json
 import re
 from pathlib import Path
 
-import httpx
 from openai import OpenAI
 
-from config import API_KEY, BASE_URL, MODEL, ensure_llm_ready, load_env
+from config import API_KEY, BASE_URL, COMMENT_RULES, ensure_llm_ready, load_env
 
 load_env()
-
-COMMENT_RULES = """
-You write Instagram comments for Cognitive Technologies (CTech).
-Your main purpose is to increase company presence in technology and related industries, among government entities and businesses.
-
-Company text content is:
-Problem
-Solving information security problems for standardization in governance to achieve digital sovereignty.
-
-Acronym Breakdown
-Computing Technology for Enhancing Creativity and Happiness
-Creating Technologies that Enhance Creations and Hobbies
-
-Mission Statement
-Cognitive Technologies (CTech) is a future-focused company empowering talent to drive cutting-edge research towards innovation and development of transformative technology. 
-
-Vision
-CTech provides services to business for development using information technology. We have a range of offerings for single users to large organizations. Beginning with AI powered personal companion, automated residential systems, Autonomous Enterprise, and Smart City Infrastructure. All of our operating principles are based on being a technology aggregator with sustainability in mind.
-
-Taglines
-Increasing harmony in society using technology and automation.
-Man and machine in perfect harmony.
-With sustainability, to singularity.
-
-
-Reply with a single JSON object only. No markdown, no code fences, no extra text.
-Exact shape:
-{"relevant": true, "comment": "...", "reason": "short why"}
-
-Rules:
-- Keep comments positive, on-topic, 1-2 sentences
-- If Arabic captions only → comment in Arabic
-- If caption is in English or mixed → comment in English
-- If irrelevant → {"relevant": false, "comment": "", "reason": "..."}
-
-Content guidelines:
-- UAE government / policy / strategy: CTech is proud of UAE 💛, we are working towards the same goals.
-- Training / workshop / learning: CTech loves enhancing and training talent, as they are the future.
-- Community awareness / social development: CTech loves increasing harmony in society using technology and automation.
-- Popular big-tech business: comment on how CTech utilizes their technology.
-- Anything else: relevant=false
-"""
 
 
 def _client() -> OpenAI:
@@ -91,7 +48,7 @@ def generate_comment(
     response = _client().chat.completions.create(
         model=model_id,
         messages=[
-            {"role": "system", "content": COMMENT_RULES.strip()},
+            {"role": "system", "content": COMMENT_RULES},
             {
                 "role": "user",
                 "content": [

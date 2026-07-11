@@ -11,10 +11,11 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-Copy `.env` and set:
+Copy `.env.example` to `.env` and set:
 
 - `LM_STUDIO_BASE_URL` / `LM_STUDIO_API_KEY` / `LM_STUDIO_MODEL`
 - `INSTA_ID` / `INSTA_PASS`
+- `COMMENT_RULES` (LLM system prompt for comments)
 - optional: `WINDOW_WIDTH`, `WINDOW_HEIGHT`, `CDP_PORT`
 
 ## Run

@@ -57,6 +57,12 @@ WINDOW_HEIGHT = int(os.getenv("WINDOW_HEIGHT", "900"))
 LOG_PATH = HERE / "comment_log.json"
 CSV_PATH = HERE / "comment_log.csv"
 
+COMMENT_RULES = (os.getenv("COMMENT_RULES") or "").strip()
+if not COMMENT_RULES:
+    raise RuntimeError(
+        "COMMENT_RULES is not set in .env — copy from .env.example or add COMMENT_RULES=..."
+    )
+
 
 def _models_url() -> str:
     if not BASE_URL:
