@@ -55,7 +55,6 @@ WINDOW_WIDTH = int(os.getenv("WINDOW_WIDTH", "1280"))
 WINDOW_HEIGHT = int(os.getenv("WINDOW_HEIGHT", "900"))
 
 LOG_PATH = HERE / "comment_log.json"
-CSV_PATH = HERE / "comment_log.csv"
 
 COMMENT_RULES = (os.getenv("COMMENT_RULES") or "").strip()
 if not COMMENT_RULES:

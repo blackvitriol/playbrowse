@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-import csv
 import json
 import re
 import sys
@@ -22,7 +21,6 @@ from playwright.async_api import async_playwright
 from comment_llm import generate_comment
 from config import (
     BROWSER_DATA_DIR,
-    CSV_PATH,
     INSTA_ID,
     INSTA_PASS,
     LOG_PATH,
@@ -103,21 +101,6 @@ def log_post(
         rows.append(entry)
 
     LOG_PATH.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
-    fields = [
-        "datetime",
-        "datetime_utc",
-        "ts",
-        "post_id",
-        "username",
-        "caption",
-        "comment",
-        "relevant",
-    ]
-    with CSV_PATH.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
-        w.writeheader()
-        for row in rows:
-            w.writerow({k: row.get(k, "") for k in fields})
     return entry
 
 

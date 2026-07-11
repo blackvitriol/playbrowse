@@ -26,4 +26,4 @@ python main_test.py --target 10
 
 Or open `manual_instagram.ipynb` (kernel = this `.venv`).
 
-Chrome opens via CDP using `browser_data/` (gitignored). Comments are logged to `comment_log.json` / `.csv` (gitignored).
+Chrome opens via CDP using `browser_data/` (gitignored). Comments are logged to `comment_log.json` (gitignored).
